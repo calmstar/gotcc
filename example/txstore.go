@@ -59,7 +59,7 @@ func (m *MockTXStore) TXUpdate(ctx context.Context, txID string, componentID str
 }
 
 func (m *MockTXStore) GetHangingTXs(ctx context.Context) ([]*gotcc.Transaction, error) {
-	records, err := m.dao.GetTXRecords(ctx, expdao.WithStatus(gotcc.TryHanging))
+	records, err := m.dao.GetTXRecords(ctx, expdao.WithStatus(gotcc.TXHanging))
 	if err != nil {
 		return nil, err
 	}

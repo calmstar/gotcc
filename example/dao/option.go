@@ -13,7 +13,7 @@ func WithID(id uint) QueryOption {
 	}
 }
 
-func WithStatus(status gotcc.ComponentTryStatus) QueryOption {
+func WithStatus(status gotcc.TXStatus) QueryOption {
 	return func(db *gorm.DB) *gorm.DB {
 		return db.Where("status = ?", status.String())
 	}

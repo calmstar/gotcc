@@ -29,16 +29,17 @@ func GetRedisClient() *redis_lock.Client {
 	return redisClient
 }
 
-// 构造事务 id key，用于幂等去重
+// 构造事务 id key，用于幂等去重。
 func BuildTXKey(componentID, txID string) string {
 	return fmt.Sprintf("txKey:%s:%s", componentID, txID)
 }
 
+// 获取事务对应的biz_id
 func BuildTXDetailKey(componentID, txID string) string {
 	return fmt.Sprintf("txDetailKey:%s:%s", componentID, txID)
 }
 
-// 构造请求 id，用于记录状态机
+// 构造请求 id，用于记录状态机。biz_id对应的数据状态
 func BuildDataKey(componentID, txID, bizID string) string {
 	return fmt.Sprintf("txKey:%s:%s:%s", componentID, txID, bizID)
 }
@@ -48,6 +49,7 @@ func BuildTXLockKey(componentID, txID string) string {
 	return fmt.Sprintf("txLockKey:%s:%s", componentID, txID)
 }
 
+// 构造记录锁
 func BuildTXRecordLockKey() string {
 	return "gotcc:txRecord:lock"
 }
