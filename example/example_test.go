@@ -3,6 +3,7 @@ package example
 import (
 	"context"
 	"fmt"
+	"testing"
 	"time"
 
 	"github.com/xiaoxuxiansheng/gotcc"
@@ -11,13 +12,13 @@ import (
 )
 
 const (
-	dsn      = "请输入 mysql sdn"
+	dsn      = "root:@tcp(127.0.0.1:3306)/blog?charset=utf8mb4&parseTime=True&loc=Asia%2FShanghai"
 	network  = "tcp"
-	address  = "请输入 redis ip:port"
-	password = "请输入 redis 密码"
+	address  = "127.0.0.1:6379"
+	password = ""
 )
 
-func main() {
+func Test_main(t *testing.T) {
 	redisClient := pkg.NewRedisClient(network, address, password)
 	mysqlDB, err := pkg.NewDB(dsn)
 	if err != nil {
